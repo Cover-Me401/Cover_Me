@@ -57,6 +57,8 @@ Please provide the following information:
 
 ![Domain Model](domainModelMidterm.jpg)
 
+### [Software Requirements](https://github.com/Cover-Me401/Team-Agreement/blob/main/requirements.md)
+
 ## References
 
 - [Job Scraping Github that spawned the idea/dream](https://github.com/Ashishkapil/Web-scraping-job-portal-sites)
