@@ -4,7 +4,7 @@
 CLI based project that integrates AI with given information from user that helps you write a cover-letter from job search data.
 
 ## CLI wireframe
-
+```
 =====================================
       COVER LETTER ASSISTANT
 =====================================
@@ -44,6 +44,7 @@ Please provide the following information:
      Year: _____________________________
 
 =====================================
+```
 
 ## [User Stories]()
 
