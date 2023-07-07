@@ -1,4 +1,5 @@
 # Cover_Me
+Sarah Glass, Anthony Sinitsa, Dan Quinn, Logan Reese
 
 ## Description
 CLI based project that integrates AI with given information from user that helps you write a cover-letter from job search data.
@@ -46,8 +47,12 @@ Please provide the following information:
 =====================================
 ```
 
-## [User Stories]()
+### [User Stories](https://github.com/orgs/Cover-Me401/projects/1)
 
 ## Domain Model
 
+![Domain Model](domainModelMidterm.jpg)
+
 ## References
+
+- [Job Scraping Github that spawned the idea/dream](https://github.com/Ashishkapil/Web-scraping-job-portal-sites)
