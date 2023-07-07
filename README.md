@@ -1,7 +1,12 @@
 # Cover_Me
+### Authors
+Sarah Glass, Anthony Sinitsa, Dan Quinn, Logan Reese
 
 ## Description
-CLI based project that integrates AI with given information from user that helps you write a cover-letter from job search data.
+
+We will create a CLI app that will build a web scraper from job search sites online like monster.com, indeed.com, etc. We will collect data for job listings in the tech industry such as company name, skills, education level, salary detail, etc. and then allow users to search for jobs by keyword, save jobs they are interested in, and run the job's data through AI to produce a sample cover letter for that job.
+
+Helps users find relevant and recent job listings in the tech industry, select listings they like, and then prompt AI to process the listing's data to produce a sample cover letter for the given job posting.
 
 ## CLI wireframe
 ```
@@ -46,8 +51,12 @@ Please provide the following information:
 =====================================
 ```
 
-## [User Stories]()
+### [User Stories](https://github.com/orgs/Cover-Me401/projects/1)
 
 ## Domain Model
 
+![Domain Model](domainModelMidterm.jpg)
+
 ## References
+
+- [Job Scraping Github that spawned the idea/dream](https://github.com/Ashishkapil/Web-scraping-job-portal-sites)
