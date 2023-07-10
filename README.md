@@ -1,6 +1,8 @@
 # Cover_Me
+
 ### Authors
-Sarah Glass, Anthony Sinitsa, Dan Quinn, Logan Reese
+
+Sarah Glass, Anthony Sinitsa, Dan Quinn, Logan Reese for seattle_c_py_401d22
 
 ## Description
 
@@ -147,6 +149,76 @@ If the user selects the "Exit" option:
 
 ### [Software Requirements](https://github.com/Cover-Me401/Team-Agreement/blob/main/requirements.md)
 
-## References
+## Links and Resources
 
 - [Job Scraping Github that spawned the idea/dream](https://github.com/Ashishkapil/Web-scraping-job-portal-sites)
+
+- [How to Scrape Indeed in 2023](https://scrapeops.io/web-scraping-playbook/how-to-scrape-indeed/)
+
+- [Automating Job Search with Python using BeautifulSoup and Selenium](https://www.chrislovejoy.me/job-scraper)
+
+- [BeautifulSoup documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+- [Scrape Ops Proxy Aggregator for anti-bot protection](https://scrapeops.io/proxy-aggregator/)
+
+- [Scrape LinkedIn Using Selenium And Beautiful Soup in Python](https://www.geeksforgeeks.org/scrape-linkedin-using-selenium-and-beautiful-soup-in-python/)
+
+
+
+## Setup
+
+- ENV requirements:
+
+## How to initialize/run application
+
+- python3 -m docker.modules.program_start
+- python3 -m docker.modules.program_start
+
+## Libraries & Tools
+
+- os, shutil, sys, rich
+- Bard Chatbot
+- BeautifulSoup
+- dotenv
+- fitz
+- [ScrapeOps API Key](https://scrapeops.io/proxy-aggregator/)
+- JSON
+- requests
+- URLLIB urlencode
+- re
+
+
+
+## Tests
+
+for example:
+
+- pytest tests/test_test.py
+- Testing using pytest's `monkeypatch` and `capsys` features
+
+
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+def get_job_postings(keyword):
+  url = "https://www.indeed.com/jobs?q={}&l=".format(keyword)
+  response = requests.get(url)
+  soup = BeautifulSoup(response.content, "html.parser")
+  job_postings = []
+  for job_card in soup.find_all("div", class_="jobsearch-JobCard"):
+    job_title = job_card.find("a", class_="jobtitle").text
+    company_name = job_card.find("span", class_="company").text
+    location = job_card.find("span", class_="location").text
+    job_postings.append({
+      "job_title": job_title,
+      "company_name": company_name,
+      "location": location,
+    })
+  return job_postings
+
+job_postings = get_job_postings("software engineer")
+for job_posting in job_postings:
+  print(job_posting)
+  ```
