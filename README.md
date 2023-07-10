@@ -143,7 +143,7 @@ If the user selects the "Exit" option:
 
 ## Domain Model
 
-![Domain Model](domainModelMidterm.jpg)
+![Domain Model](domainModel2.jpg)
 
 ### [Software Requirements](https://github.com/Cover-Me401/Team-Agreement/blob/main/requirements.md)
 
