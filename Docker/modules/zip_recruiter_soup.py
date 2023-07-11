@@ -4,27 +4,13 @@ import json
 from urllib.parse import urlencode
 import re
 
-def get_monster_search_url(keyword, location):
-    """This function gets the Monster search URL for a given keyword and location.
-
-    Args:
-        keyword (str): The keyword to search for.
-        location (str): The location to search for jobs in.
-
-    Returns:
-        str: The Monster search URL.
-    """
-
-    # This line creates the URL parameters for the Monster search.
+def get_zip_recruiter_search_url(keyword, location):
     params = {
         "q": keyword,
         "where": location,
     }
-
-    # This line encodes the URL parameters.
     encoded_params = urlencode(params)
 
-    # This line creates the Monster search URL.
     search_url = "https://www.monster.com/jobs/search/?{}".format(encoded_params)
 
     return search_url
