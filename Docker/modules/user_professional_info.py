@@ -11,7 +11,7 @@ import shutil
 console = Console()
 prompt = Prompt()
 
-def user_professional_info():
+def user_professional_info(years_experiance, prev_jobs_keywords, tech_languages, professional_interests):
     years_experience = Prompt.ask("Enter your years of experience in the field")
     prev_jobs_keywords = Prompt.ask("Enter some keywords from previous jobs or projects")
     tech_languages = Prompt.ask("Enter the tech language(s) you want to use")
