@@ -103,12 +103,13 @@ $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
 
 import requests
 from bs4 import BeautifulSoup
-# import program_start
+from Docker.modules.program_start import program_start, resume_to_bard
 import random
 import json
 from urllib.parse import urlencode
 import re
 from datetime import datetime
+import csv
 
 user_agents_list = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0",
@@ -140,27 +141,27 @@ def get_indeed_search_url(keyword, location, offset=0):
 
 
 
-# def get_indeed_search_url(keyword, location, offset=0):
-#   parameters = {'q': keyword, 'l': location, 'filter': 0, 'start': offset}
-#   url = 'https://www.indeed.com/jobs?' + urlencode(parameters)
+def get_indeed_search_url(keyword, location, offset=0):
+  parameters = {'q': keyword, 'l': location, 'filter': 0, 'start': offset}
+  url = 'https://www.indeed.com/jobs?' + urlencode(parameters)
   
   
-#   soup = BeautifulSoup(response.content, 'html.parser')
-#   cards = soup.find_all('div', 'cardOutline tapItem dd-privacy-allow result job_b8f6807751984821 sponsoredJob resultWithShelf sponTapItem desktop vjs-highlight css-kyg8or eu4oa1w0')
+  soup = BeautifulSoup(response.content, 'html.parser')
+  cards = soup.find_all('div', 'cardOutline tapItem dd-privacy-allow result job_b8f6807751984821 sponsoredJob resultWithShelf sponTapItem desktop vjs-highlight css-kyg8or eu4oa1w0')
   
 
-#   parameters = {'q': keyword, 'l': location, 'filter': 0, 'start': offset}
-#   print('https://www.indeed.com/jobs?' + urlencode(parameters))
-#   url = 'https://www.indeed.com/jobs?' + urlencode(parameters)
-#   response = requests.get(url, headers={'User-Agent': random.choice(user_agents_list)})
-#   soup = BeautifulSoup(response.content, 'html.parser')  
-#   return cards + urlencode(parameters)
+  parameters = {'q': keyword, 'l': location, 'filter': 0, 'start': offset}
+  print('https://www.indeed.com/jobs?' + urlencode(parameters))
+  url = 'https://www.indeed.com/jobs?' + urlencode(parameters)
+  response = requests.get(url, headers={'User-Agent': random.choice(user_agents_list)})
+  soup = BeautifulSoup(response.content, 'html.parser')  
+  return cards + urlencode(parameters)
 
 
-  # print(soup.text)
-  # title_span = soup.find_all('span')
-  # print(title_span)
-  # return 'https://www.indeed.com/jobs?' + urlencode(parameters)
+  print(soup.text)
+  title_span = soup.find_all('span')
+  print(title_span)
+  return 'https://www.indeed.com/jobs?' + urlencode(parameters)
 
 job_id_list = []
 job_url_list = []
@@ -199,7 +200,43 @@ print(job_url_list)
 
 
 if __name__ == "__main__":
-  # job_postings = get_job_postings("software engineer")
-  # for job_posting in job_postings:
-  #   print(job_posting)
+  job_postings = get_job_postings("software engineer")
+  for job_posting in job_postings:
+    print(job_posting)
   get_indeed_search_url('software developer', 'Seattle, WA', 0)
+
+
+
+
+# -------------------------------------
+
+
+
+def get_url(position, location):
+	template = 'https://www.indeed.com/jobs?q={}}&l={}'
+	url = template.format(position, location)
+	return url
+
+url = get_url('software developer', 'seattle wa')
+
+
+# extract the raw html data via get request
+response = requests.get(url)
+print(response) 
+
+# should get 200 code
+response.reason
+# should be 'OK'
+
+soup = BeautifulSoup(response.text, 'html.parser')
+cards = soup.find_all('div', 'cardOutline')
+
+# prototype extraction of single record
+
+card = cards[0]
+span = card.h2.a.span
+job_title = span.get('title')
+job_url = 'https://indeed.com' + span.get('href')
+company = card.find('span', 'companyName').text.strip()
+location = card.find('div', 'companyLocation').text.strip()
+job_description = card.find('div', 'job-snippet').text.strip()
