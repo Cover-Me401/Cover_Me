@@ -13,7 +13,8 @@ from Docker.modules.BARD_writer import bard
 from Docker.modules.resume_reader import open_resume
 from Docker.modules.user_professional_info import user_professional_info
 
-
+def menu_run():
+  
 
 
 

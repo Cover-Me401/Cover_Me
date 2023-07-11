@@ -6,9 +6,9 @@ from bardapi import Bard
 import os
 from dotenv import load_dotenv
 from Bard import Chatbot
-from resume_reader import text
+from Docker.modules.resume_reader import text
 import sys
-import program_start
+# import program_start
 
 def bard():
   # This line loads the environment variables from the .env file.
