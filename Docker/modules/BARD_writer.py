@@ -19,6 +19,7 @@ def bard():
   bot = Chatbot(token)
   # This line asks the BARD API the question "who let dogs out?"
   question = bot.ask(f'Write a cover letter for this resume:\n{text}')['content']
+  # question = bot.ask(f'Write a function that add 2 numbers together')['content']
   # This line prints the question.
   print(question)
 

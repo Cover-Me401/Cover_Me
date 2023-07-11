@@ -2,9 +2,9 @@
 # code takes in the user input from program_start and runs BeautifulSoup on indeed using HTML reference code, including job title, city, URL, job requirements, and job description to posting.
 # Code writes data to txt files
 
-from selenium import webdriver
+# from selenium import webdriver
 # from selenium.webdriver.opera.options import Options as OperOptions
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 import requests
 from bs4 import BeautifulSoup
 # import program_start
@@ -36,7 +36,8 @@ def get_indeed_search_url(keyword, location, offset=0):
   url = 'https://www.indeed.com/jobs?' + urlencode(parameters)
   
   
-  soup = BeautifulSoup(html_content, 'html.parser')
+  response = requests.get(url, headers={'User-Agent': random.choice(user_agents_list)})
+  soup = BeautifulSoup(response.content, 'html.parser')
   cards = soup.find_all('div', 'cardOutline tapItem dd-privacy-allow result job_b8f6807751984821 sponsoredJob resultWithShelf sponTapItem desktop vjs-highlight css-kyg8or eu4oa1w0')
   
   
@@ -45,7 +46,6 @@ def get_indeed_search_url(keyword, location, offset=0):
   parameters = {'q': keyword, 'l': location, 'filter': 0, 'start': offset}
   print('https://www.indeed.com/jobs?' + urlencode(parameters))
   url = 'https://www.indeed.com/jobs?' + urlencode(parameters)
-  response = requests.get(url, headers={'User-Agent': random.choice(user_agents_list)})
   soup = BeautifulSoup(response.content, 'html.parser')  
   return cards + urlencode(parameters)
 
@@ -60,39 +60,39 @@ def get_indeed_search_url(keyword, location, offset=0):
   # print(title_span)
   # return 'https://www.indeed.com/jobs?' + urlencode(parameters)
 
-job_id_list = []
-job_url_list = []
+# job_id_list = []
+# job_url_list = []
 
-keyword_list = ['software engineer']
-location_list = ['Washington']
+# keyword_list = ['software engineer']
+# location_list = ['Washington']
 
-for keyword in keyword_list:
-  for location in location_list:
-    for offset in range(0, 100, 10):
-      try:
-        indeed_jobs_url = get_indeed_search_url(keyword, location, offset=0)
-        response = requests.get(indeed_jobs_url, headers=user_agents_list)
-        print('this is response', response)
+# for keyword in keyword_list:
+#   for location in location_list:
+#     for offset in range(0, 100, 10):
+#       try:
+#         indeed_jobs_url = get_indeed_search_url(keyword, location, offset=0)
+#         response = requests.get(indeed_jobs_url, headers=user_agents_list)
+#         print('this is response', response)
 
-        if response.status_code == 200:
-          script_tag = re.findall(r'window.indeed.jobMap\]=(\{.+?\});', response.text)
-          if script_tag is not None:
-            json_blob = json.loads(script_tag[0])
-            jobs_list = json_blob['jobs']
-            for index, job in enumerate(jobs_list):
-              if job.get('jobkey') is not None:
-                job_id_list.append(job.get('jobkey'))
-              job_url = job.get('url')
-              match = re.search(r'apply-url="(.+?)"', job_url)
-              if match:
-                job_url_list.append(match.group(1))
-            if len(jobs_list) < 10:
-              break
-      except Exception as e:
-        print('Error', e)
+#         if response.status_code == 200:
+#           script_tag = re.findall(r'window.indeed.jobMap\]=(\{.+?\});', response.text)
+#           if script_tag is not None:
+#             json_blob = json.loads(script_tag[0])
+#             jobs_list = json_blob['jobs']
+#             for index, job in enumerate(jobs_list):
+#               if job.get('jobkey') is not None:
+#                 job_id_list.append(job.get('jobkey'))
+#               job_url = job.get('url')
+#               match = re.search(r'apply-url="(.+?)"', job_url)
+#               if match:
+#                 job_url_list.append(match.group(1))
+#             if len(jobs_list) < 10:
+#               break
+#       except Exception as e:
+#         print('Error', e)
 
-print(job_id_list)
-print(job_url_list)
+# print(job_id_list)
+# print(job_url_list)
 
 # def get_indeed_search_url(keyword, location, offset=0):
 #   parameters = {'q': keyword, 'l': location, 'filter': 0, 'start': offset}
