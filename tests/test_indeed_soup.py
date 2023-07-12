@@ -1,5 +1,5 @@
 import pytest
-from Docker.modules.indeed_scraper.indeed_soup_2 import get_indeed_search_url
+from Docker.modules.indeed_scraper.indeed_soup import get_indeed_search_url
 
 
 # Testing for get_indeed_search_url (indeed_soup module)
