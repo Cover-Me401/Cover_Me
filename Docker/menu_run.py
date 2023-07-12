@@ -8,13 +8,13 @@ import os
 import sys
 import shutil
 from Docker.modules.program_start import program_start, resume_to_bard
-from Docker.modules.indeepipd_soup import get_indeed_search_url, get_job_postings
+from Docker.modules.indeed_scraper.indeed_soup_2 import get_indeed_search_url, get_job_postings
 from Docker.modules.BARD_writer import bard
 from Docker.modules.resume_reader import open_resume
 from Docker.modules.user_professional_info import user_professional_info
 
 def menu_run():
-  
+  pass
 
 
 

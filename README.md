@@ -176,17 +176,21 @@ If the user selects the "Exit" option:
 
 ## Libraries & Tools
 
-- os, shutil, sys, rich
+- os, shutil, sys, rich, re, requests
 - Bard Chatbot
+- openai
 - BeautifulSoup
 - dotenv
 - fitz
 - [ScrapeOps API Key](https://scrapeops.io/proxy-aggregator/)
 - JSON
-- requests
 - URLLIB urlencode
-- re
-
+- urlencode from urllib.parse
+- datetime
+- pandas
+- scrapy
+- itemadapter
+- patch
 
 
 ## Tests
@@ -195,30 +199,3 @@ for example:
 
 - pytest tests/test_test.py
 - Testing using pytest's `monkeypatch` and `capsys` features
-
-
-
-```python
-import requests
-from bs4 import BeautifulSoup
-
-def get_job_postings(keyword):
-  url = "https://www.indeed.com/jobs?q={}&l=".format(keyword)
-  response = requests.get(url)
-  soup = BeautifulSoup(response.content, "html.parser")
-  job_postings = []
-  for job_card in soup.find_all("div", class_="jobsearch-JobCard"):
-    job_title = job_card.find("a", class_="jobtitle").text
-    company_name = job_card.find("span", class_="company").text
-    location = job_card.find("span", class_="location").text
-    job_postings.append({
-      "job_title": job_title,
-      "company_name": company_name,
-      "location": location,
-    })
-  return job_postings
-
-job_postings = get_job_postings("software engineer")
-for job_posting in job_postings:
-  print(job_posting)
-  ```

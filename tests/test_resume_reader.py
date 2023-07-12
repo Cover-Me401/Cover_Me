@@ -2,13 +2,14 @@ import pytest
 from Docker.modules.resume_reader import open_resume
 import fitz
 import os
+import io
 
 # Testing for open_resume
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_open_resume():
   assert open_resume() == None
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_open_resume():
     expected_filename = "test_resume.pdf"
     expected_mode = "rb"
@@ -27,7 +28,7 @@ def test_open_resume():
     # Clean up the temporary resume file
     os.remove(expected_filename)
 
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_open_resume_missing_file():
     filename = "missing_file.pdf"
     assert open_resume(filename) == None
