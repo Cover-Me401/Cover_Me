@@ -2,8 +2,9 @@ from rich.console import Console
 from rich.prompt import Prompt
 import os, sys, shutil
 from GPT_writer import openai
-from resume_reader import open_resume
+from Docker.modules.resume_reader import open_resume
 from Docker.modules.GPT_writer import generate_cover_letter
+
 
 console = Console()
 prompt = Prompt()
@@ -23,5 +24,3 @@ def program_start():
 if __name__ == "__main__":
   # This line calls the `program_start()` function.
   program_start()
-
-
