@@ -6,9 +6,9 @@ Sarah Glass, Anthony Sinitsa, Dan Quinn, Logan Reese for seattle_c_py_401d22
 
 ## Description
 
-We will create a CLI app that will build a web scraper from job search sites online like monster.com, indeed.com, etc. We will collect data for job listings in the tech industry such as company name, skills, education level, salary detail, etc. and then allow users to search for jobs by keyword, save jobs they are interested in, and run the job's data through AI to produce a sample cover letter for that job.
+We will create a CLI app that will build a web scraper from job search site indeed.com. We will collect data for job listings in the tech industry such as company name, skills, education level, salary detail, etc. and then allow users to search for jobs by keyword and location. User will be able to save jobs they are interested in to a file and run the job's data through AI to produce a sample cover letter for that job.
 
-Helps users find relevant and recent job listings in the tech industry, select listings they like, and then prompt AI to process the listing's data to produce a sample cover letter for the given job posting.
+This program helps users find relevant and recent job listings in the tech industry, select listings they like, and prompt AI to process the listing's data to produce a sample cover letter for the given job posting.
 
 ## CLI wireframe
 
@@ -131,17 +131,16 @@ Sincerely,
 __7. Exit the app__
 
 If the user selects the "Exit" option:
+
 - The app terminates and the terminal session returns to the command prompt.
 
-
-
-
 ## User Stories
-1. Job seeker: I want to search for job listings in tech industry by entering keywords, so that I can find relevant opportunities
-2. User: I want to filter job listings by location and date posted, so that I can view recent and localized job opportunities
-3. User 2: I want to generate a sample cover letter for a selected job listing using AI processing to help me kickstart my application process
-4. Job seeker: I want to view detailed information about a job listing, including company name, required skills, education level, and salary details, so that I can assess if it aligns with my qualifications and expectations.
-5. Accessibility: as a job seeker, I want to be able to access the job info and cover letter samples for free, and with an acceptable accessibility score (whatever the CLI version of Lighthouse is).
+
+1. Tech job seeker: I want to search for job listings in tech industry by entering keywords, so that I can find relevant opportunities.
+2. Job seeker who wants location and date: I want to filter job listings by location and date posted, so that I can view recent and localized job opportunities.
+3. Job seeker who wants a sample cover letter: I want to generate a sample cover letter for a selected job listing using AI processing to help me kickstart my application process.
+4. Job seeker who wants job details: I want to view detailed information about a job listing, including company name, required skills, education level, and salary details, so that I can assess if it aligns with my qualifications and expectations.
+5. Job seeker with accessibility considerations: as a job seeker, I want to be able to access the job info and cover letter samples for free, and with an acceptable accessibility score (whatever the CLI version of Lighthouse is).
 
 ## Domain Model
 
@@ -163,37 +162,75 @@ If the user selects the "Exit" option:
 
 - [Scrape LinkedIn Using Selenium And Beautiful Soup in Python](https://www.geeksforgeeks.org/scrape-linkedin-using-selenium-and-beautiful-soup-in-python/)
 
+- [Accessibility of Command Line Interfaces](https://dl.acm.org/doi/fullHtml/10.1145/3411764.3445544)
+
+- [Command Line Tools to Test Accessibility](https://www.assist.vt.edu/web-accessibility/testing-tools/command-line-developer-tools.html)
+
+- [Python Library automated-accessibility-testing](https://pypi.org/project/automated-accessibility-testing/)
 
 
 ## Setup
 
 - ENV requirements:
 
+```python
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+
 ## How to initialize/run application
 
-- python3 -m docker.modules.program_start
-- python3 -m docker.modules.program_start
+- python3 -m Docker.modules.[file name without .py]
+
+For example:
+
+- python3 -m Docker.modules.program_start
 
 ## Libraries & Tools
 
-- os, shutil, sys, rich, re, requests
-- Bard Chatbot
-- openai
+- asyncio
+- bardapi
 - BeautifulSoup
+- cerberus
+- datetime
+- docker
 - dotenv
 - fitz
-- [ScrapeOps API Key](https://scrapeops.io/proxy-aggregator/)
-- JSON
-- URLLIB urlencode
-- urlencode from urllib.parse
-- datetime
-- pandas
-- scrapy
+- indeed
+- io
 - itemadapter
+- json
+- math
+- openai
+- os
+- pandas
 - patch
+- pathlib
+- poetry
+- pytest
+- pytest-cov
+- re
+- requests
+- rich
+- scrapy
+- shutil
+- sys
+- typing (Dict, List)
+- unittest.mock
+- urlencode from urllib.parse
+- urllib
 
+**API Keys:**
+
+- BARD
+- OPENAI
+- SCRAPFLY
+- SCRAPEOPS
 
 ## Tests
+
+- Coverage: 80% coverage with [pytest-cov](https://pypi.org/project/pytest-cov/)
 
 for example:
 

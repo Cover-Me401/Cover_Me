@@ -2,8 +2,9 @@ import os
 import dotenv
 import bardapi
 from bardapi import Bard
-from resume_reader import text
+from Docker.modules.resume_reader import text
 from dotenv import load_dotenv
+import time
 
 # set your __Secure-1PSID value to key
 def bard():
