@@ -4,7 +4,7 @@ FROM python:3.10.4
 
 ADD job_soup.py .
 
-RUN pip install requests beautifulsoup4
+RUN pip install requests beautifulsoup4 openai fitz python-dotenv 
 
 CMD [ "python", "./job_soup.py" ]
 

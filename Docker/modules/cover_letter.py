@@ -40,11 +40,8 @@ async def program_start():
         console.print("Rate limit exceeded. Please try again later.")
         return
 
-    job_title = prompt.ask("Enter a job title to search for")
-    city = prompt.ask("Enter a city to search for jobs in")
 
-    resume_path = 'Docker/modules/LoganR_Resume.pdf'
-    resume_text = open_resume(resume_path).get_toc()
+
 
     try:
         # Check timeout for fetching ai-plugin.json/openapi.yaml
@@ -83,6 +80,7 @@ def open_resume(filename):
     return fitz.open(filename)
 
 
+
 def generate_cover_letter(resume_text, job_description):
     """
     Generate a cover letter using OpenAI and the scraped information from Indeed.
@@ -103,6 +101,7 @@ def generate_cover_letter(resume_text, job_description):
     cover_letter = response.choices[0].text.strip()
 
     return cover_letter
+
 
 
 def check_rate_limit():
@@ -146,3 +145,4 @@ def get_job_description():
 if __name__ == "__main__":
     # Run the asyncio event loop
     asyncio.run(program_start())
+

@@ -1,11 +1,12 @@
 import pytest
-from Docker.modules.program_start import program_start, resume_to_bard
+from Docker.modules.program_start import program_start
 import io
 import os
 from unittest.mock import patch
 
+
 # Testing for program_start
-@pytest.mark.skip
+# @pytest.mark.skip
 def test_program_start():
     expected_job_title = "Software Engineer"
     expected_city = "San Francisco"

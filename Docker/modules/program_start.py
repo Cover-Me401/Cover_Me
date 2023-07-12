@@ -5,6 +5,7 @@ from GPT_writer import openai
 from resume_reader import open_resume
 from Docker.modules.GPT_writer import generate_cover_letter
 
+
 console = Console()
 prompt = Prompt()
 
