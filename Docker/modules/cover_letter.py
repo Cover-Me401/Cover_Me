@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import asyncio
 import sys
+sys.path.append("Docker/modules/indeed_scraper") 
 
 openai.api_key = 'PUT YOUR OPENAI_API_KEY HERE'
 console = Console()
