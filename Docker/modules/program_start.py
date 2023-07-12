@@ -4,7 +4,7 @@
 from rich.console import Console
 from rich.prompt import Prompt
 import os, sys, shutil
-from Docker.modules.BARD_writer import bard
+from BARD_writer import bard
 from resume_reader import open_resume
 
 console = Console()

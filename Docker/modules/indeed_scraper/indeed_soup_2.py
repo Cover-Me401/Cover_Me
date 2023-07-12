@@ -10,37 +10,36 @@ from urllib.parse import urlencode
 import re
 from datetime import datetime
 import csv
+import os
 from rich.console import Console
+from dotenv import load_dotenv
+load_dotenv()
+token = os.getenv("SCRAPEOPS_API_KEY")
 
 console = Console()
 
 def get_url(position, location):
-	template = 'https://www.indeed.com/jobs?q={}}&l={}'
-	url = template.format(position, location)
-	return url
+	template = f'https://www.indeed.com/jobs?q={position}&l={location}'
+	return template
 
-url = get_url('software developer', 'seattle wa')
+# url = get_url('software developer', 'seattle wa')
 
-def extract_html():
-  response = requests.get(url)
-  print(response) 
-  # should get 200 code
-  response.reason
-  # should be 'OK'
-
-def soup_parser():
-  response = requests.get(url)
+def get_record():
+  headers = {"Authorization": token}
+  url = get_url('engineer', 'seattle wa')
+  response = requests.get(url, headers=headers)
+  print(response.status_code)
   soup = BeautifulSoup(response.text, 'html.parser')
+  with open('soup_return.txt', "w") as f:
+      for i in soup:
+        # print(i)
+        f.write(str(i))
   cards = soup.find_all('div', 'cardOutline')
-
-def single_record_parsed():
-  response = requests.get(url)
-  soup = BeautifulSoup(response.text, 'html.parser')
-  cards = soup.find_all('div', 'cardOutline')
-  card = cards[0]
-  span = card.h2.a.span
-  job_title = span.get('title')
-  job_url = 'https://indeed.com' + span.get('href')
+  # card = cards[0]
+  # span = card.h2.a.span
+  # job_title = span.get('title')
+  # return job_title 
+  # job_url = 'https://indeed.com' + span.get('href')
   # company = card.find('span', 'companyName').text.strip()
   # location = card.find('div', 'companyLocation').text.strip()
   # job_description = card.find('div', 'job-snippet').text.strip()
@@ -48,9 +47,9 @@ def single_record_parsed():
   # today = datetime.today().strftime('%Y-%m-%d')
 
 
-
 if __name__ == "__main__":
-  console.print(ff"This is spa:: {span"}")
+  # console.print(f'This is job title {job_title}')
+  get_record()
 
 
 
@@ -164,13 +163,13 @@ if __name__ == "__main__":
 
 
 
-"""
-This is an example web scraper for indeed.com used in scrapfly blog article:
-https://scrapfly.io/blog/how-to-scrape-indeedcom/
+# """
+# This is an example web scraper for indeed.com used in scrapfly blog article:
+# https://scrapfly.io/blog/how-to-scrape-indeedcom/
 
-To run this scraper set env variable $SCRAPFLY_KEY with your scrapfly API key:
-$ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
-"""
+# To run this scraper set env variable $SCRAPFLY_KEY with your scrapfly API key:
+# $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
+# """
 # import json
 # import math
 # import os

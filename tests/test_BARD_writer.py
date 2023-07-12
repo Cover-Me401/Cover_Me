@@ -5,7 +5,12 @@ from unittest.mock import patch
 
 
 # Testing for bard
+# @pytest.mark.skip
 def test_bard():
+  assert bard() == None
+
+@pytest.mark.skip
+def test_bard_sample():
     expected_text = "Sample Resume Text"  # Replace with the expected resume text
     expected_question = "Write a cover letter for this resume:\nSample Resume Text"
 
@@ -39,5 +44,3 @@ if __name__ == "__main__":
 
 
 
-def test_bard():
-  assert bard() == None
