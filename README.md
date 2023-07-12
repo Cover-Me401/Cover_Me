@@ -169,7 +169,6 @@ If the user selects the "Exit" option:
 - [Python Library automated-accessibility-testing](https://pypi.org/project/automated-accessibility-testing/)
 
 
-
 ## Setup
 
 - ENV requirements:
@@ -228,7 +227,6 @@ For example:
 - OPENAI
 - SCRAPFLY
 - SCRAPEOPS
-
 
 ## Tests
 

@@ -25,4 +25,4 @@ page1 = reader.load_page(0)
 text = page1.get_text()
 
 # This line prints the text from the first page of the PDF file.
-# print(text)
+print(text)
