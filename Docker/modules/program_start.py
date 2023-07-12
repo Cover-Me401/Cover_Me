@@ -6,28 +6,27 @@ from rich.prompt import Prompt
 import os, sys, shutil
 from BARD_writer import bard
 from resume_reader import open_resume
+from Docker.modules.BARD_writer import generate_cover_letter
+from Docker.modules.resume_reader import open_resume
 
 console = Console()
 prompt = Prompt()
 
-# This function gets the user's input for the job title and city.
 def program_start():
-  job_title = prompt.ask("Enter a job title to search for")
-  city = prompt.ask("Enter a city to search for jobs in")
+    job_title = prompt.ask("Enter a job title to search for")
+    city = prompt.ask("Enter a city to search for jobs in")
 
-  # This line calls the `resume_to_bard()` function and passes the job title and city as arguments.
-  # response = resume_to_bard(job_title, city)
+    cover_letter = resume_to_bard()
 
-  # This line prints the job title and city to the console.
-  console.print(f"Searching for job title: {job_title}")
-  console.print(f"Searching in city: {city}")
+    console.print(f"Searching for job title: {job_title}")
+    console.print(f"Searching in city: {city}")
+    console.print(f"Generated Cover Letter:\n{cover_letter}")
 
-# This function opens the user's resume file and extracts the text.
 def resume_to_bard():
-    text = open_resume('Docker/modules/LoganR_Resume.pdf').read()
-    data = {"text": text}
-    response = bard.create_response(data)
-    return response
+    resume_path = 'Docker/modules/LoganR_Resume.pdf'
+    resume_text = open_resume(resume_path).read()
+    cover_letter = generate_cover_letter(resume_text)
+    return cover_letter
 
 if __name__ == "__main__":
   # This line calls the `program_start()` function.
