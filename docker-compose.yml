@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    cover_me:
+        build: .
+        command: 
+            - /bin/sh
+            - -c
+            - |
+                python Docker/menu_run.py
+        
