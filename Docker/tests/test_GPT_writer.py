@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import openai
 from modules.GPT_writer import gpt
 
+
 def test_gpt_with_valid_api_key():
   load_dotenv()
   openai.api_key = "YOUR_API_KEY"
