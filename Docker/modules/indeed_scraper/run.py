@@ -3,14 +3,18 @@
 # $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
 # poetry run python Docker/modules/indeed_scraper/run.py
 
+
+
+
 import asyncio
 import json
 from pathlib import Path
 from indeed import BASE_CONFIG
 import indeed
 
+# Change this to your absolute path
 output = Path(__file__).parent / "results"
-output.mkdir(exist_ok=True)
+output.mkdir(parents=True, exist_ok=True)
 
 # job_specification = input('Enter job role: ')
 # job_specification = job_specification.replace(" ", "+")
@@ -19,7 +23,6 @@ output.mkdir(exist_ok=True)
 async def run(job_specification, location):
   # enable scrapfly cache for basic use
   BASE_CONFIG["cache"] = True
-
 
   url = f"https://www.indeed.com/jobs?q={job_specification}&l={location}"
   result_search = await indeed.scrape_search(url, max_results=10)

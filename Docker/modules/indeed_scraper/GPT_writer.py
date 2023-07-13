@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import openai
 import json
 import re
+from resume_reader import open_resume
+from cover_letter_generator import generate_cover_letter
 
 def get_descriptions():
   descriptions = []
@@ -13,27 +15,25 @@ def get_descriptions():
   for i in range(length_jobs):
     description = parsed_job_details[i]['description']
     descriptions.append(description)
-  return descriptions
+  return descriptions[:2]  # Return only the first 2 descriptions
 
 def striphtml(json_details):
   p = re.compile(r'<.*?>')
   return p.sub('', json_details)
 
-def gpt():
-  load_dotenv()
-  openai.api_key = os.environ['OPENAI_API_KEY']
-  messages = [{"role": "system", "content": "You are a helpful assistant"}]
-  
-  user_experience = input('Enter your work experience: ')
-  descriptions = get_descriptions()
-  question = f'write me a cover letter using {user_experience} and the following job descriptions: '
-  for description in descriptions:
-    messages.append({"role": "user", "content": question})
-    messages.append({"role": "assistant", "content": description})
-    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=messages)
-    print(f'response: {completion["choices"][0]["message"]["content"]}')
-  print(completion)
-  
+async def gpt():
+    load_dotenv()
+    openai.api_key = os.environ['OPENAI_API_KEY']
+
+    resume_filename = input('Enter your resume filename: ')  # Get the resume filename from the user
+    user_experience = open_resume(resume_filename)  # Get the work experience from the resume
+
+    descriptions = get_descriptions()
+
+    for idx, description in enumerate(descriptions):
+        cover_letter = generate_cover_letter(user_experience, description)  # Generate the cover letter
+        print(f'Cover Letter {idx+1}: {cover_letter}\n\n')
+
 
 if __name__ == "__main__":
   gpt()
