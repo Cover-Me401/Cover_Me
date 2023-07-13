@@ -1,9 +1,9 @@
 from rich.console import Console
 from rich.prompt import Prompt
 import os, sys, shutil
-from modules.GPT_writer import openai
+from Docker.modules.indeed_scraper.GPT_writer import openai
 from modules.resume_reader import open_resume
-from modules.GPT_writer import generate_cover_letter
+from Docker.modules.indeed_scraper.GPT_writer import generate_cover_letter
 
 
 console = Console()
