@@ -1,6 +1,9 @@
 import openai
+from dotenv import load_dotenv
+import os
 
-openai.api_key = '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'
+load_dotenv()
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def generate_cover_letter(resume_text, job_description):
     prompt = "Write a cover letter for the job with the following information:\n\nResume Text: {}\n\nJob Description: {}".format(

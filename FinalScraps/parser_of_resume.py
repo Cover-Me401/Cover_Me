@@ -1,9 +1,9 @@
 # pip install python-docx
 # pip install docx
 # pip install pyresparser
-import os
-import nltk
-from pyresparser import ResumeParser
+# import os
+# import nltk
+# from pyresparser import ResumeParser
 
 # from docx import Document
 
@@ -26,14 +26,14 @@ from pyresparser import ResumeParser
 #     print(data['skills'])
 # if you just return data, you should see everything that is returned.
 
-def resume_parser():
-  directory = '/Users/sarahglass/projects/courses/401/Cover_Me/Docker/modules/'
-  file = 'LoganR_Resume.pdf'
-  data=ResumeParser(directory+file).get_extracted_data()
-  return data
+# def resume_parser():
+#   directory = '/Users/sarahglass/projects/courses/401/Cover_Me/Docker/modules/'
+#   file = 'LoganR_Resume.pdf'
+#   data=ResumeParser(directory+file).get_extracted_data()
+#   return data
 
 
 
 
-if __name__ == "__main__":
-  resume_parser()
+# if __name__ == "__main__":
+#   resume_parser()

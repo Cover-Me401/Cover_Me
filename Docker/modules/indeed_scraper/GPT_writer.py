@@ -6,6 +6,7 @@ import re
 from resume_reader import open_resume
 from cover_letter_generator import generate_cover_letter
 
+
 def get_descriptions():
   descriptions = []
   with open('Docker/modules/indeed_scraper/results/jobs.json', 'r') as file:
