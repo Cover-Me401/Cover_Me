@@ -1,5 +1,5 @@
 import pytest
-from Docker.modules.BARD_writer import bard
+from modules.BARD_writer import bard
 import io
 from unittest.mock import patch
 
