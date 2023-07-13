@@ -12,9 +12,9 @@ import indeed
 output = Path(__file__).parent / "results"
 output.mkdir(exist_ok=True)
 
-# job_specification = input('Enter job role: ')
-# job_specification = job_specification.replace(" ", "+")
-# location = input('Enter a location: ')
+job_specification = input('Enter job role: ')
+job_specification = job_specification.replace(" ", "+")
+location = input('Enter a location: ')
 
 async def run(job_specification, location):
   # enable scrapfly cache for basic use
@@ -36,5 +36,5 @@ async def run(job_specification, location):
   output.joinpath("jobs.json").write_text(json.dumps(result_jobs, indent=2, ensure_ascii=False))
 
 
-# if __name__ == "__main__":
-#   asyncio.run(run(job_specification, location))
+if __name__ == "__main__":
+  asyncio.run(run(job_specification, location))

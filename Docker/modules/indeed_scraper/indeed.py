@@ -23,6 +23,7 @@ def parse_search_page(result):
   """Find hidden web data of search results in Indeed.com search page HTML"""
   data = re.findall(r'window.mosaic.providerData\["mosaic-provider-jobcards"\]=(\{.+?\});', result.content)
   data = json.loads(data[0])
+  print(data)
   return {
     "results": data["metaData"]["mosaicProviderJobCardsModel"]["results"],
     "meta": data["metaData"]["mosaicProviderJobCardsModel"]["tierSummaries"],
