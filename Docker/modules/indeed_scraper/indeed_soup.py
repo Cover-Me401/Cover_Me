@@ -103,7 +103,7 @@ $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
 
 import requests
 from bs4 import BeautifulSoup
-from Docker.modules.program_start import program_start
+from modules.program_start import program_start
 import random
 import json
 from urllib.parse import urlencode
@@ -213,7 +213,7 @@ if __name__ == "__main__":
 
 
 def get_url(position, location):
-	template = 'https://www.indeed.com/jobs?q={}}&l={}'
+	template = 'https://www.indeed.com/jobs?q={}&l={}'
 	url = template.format(position, location)
 	return url
 

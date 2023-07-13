@@ -1,5 +1,5 @@
 import pytest
-from Docker.modules.resume_reader import open_resume
+from modules.resume_reader import open_resume
 import fitz
 import os
 import io

@@ -9,7 +9,7 @@ import sys
 import shutil
 from modules.program_start import program_start
 # from Docker.modules.indeed_scraper.indeed_soup_2 import get_indeed_search_url, get_job_postings
-from modules.BARD_writer import bard
+# from modules.BARD_writer import bard
 from modules.resume_reader import open_resume
 from modules.user_professional_info import user_professional_info
 
