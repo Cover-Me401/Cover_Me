@@ -7,5 +7,6 @@ services:
             - /bin/sh
             - -c
             - |
+                pip install scrapfly-sdk
                 python Docker/menu_run.py
         
