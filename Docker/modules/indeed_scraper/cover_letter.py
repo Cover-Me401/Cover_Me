@@ -1,20 +1,17 @@
-import fitz
-import requests
 from rich.console import Console
 from rich.prompt import Prompt
 from bs4 import BeautifulSoup
-import openai
-import time
-from indeed_scraper.run import run
-import json
+from run import run
 from pathlib import Path
-import asyncio
-import sys
+from dotenv import load_dotenv
+import sys, os, asyncio, time, openai, json, fitz, requests
 
 sys.path.append("Docker/modules/indeed_scraper/indeed.py")  # Add the path to the indeed_scraper module
 
-# HARDCODE IN FOR NOW
-openai.api_key = 'OPENAI_API_KEY'
+
+load_dotenv()
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
 console = Console()
 prompt = Prompt()
 

@@ -1,14 +1,12 @@
 # https://github.com/scrapfly/scrapfly-scrapers/tree/main/indeed-scraper
 # To run this scraper set env variable $SCRAPFLY_KEY with your scrapfly API key:
 # $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
-
 import json
 import math
 import os
 import re
 from typing import Dict, List
 import urllib
-
 from loguru import logger as log
 from scrapfly import ScrapeApiResponse, ScrapeConfig, ScrapflyClient, ScrapflyScrapeError
 
@@ -27,22 +25,6 @@ def parse_search_page(result):
     "results": data["metaData"]["mosaicProviderJobCardsModel"]["results"],
     "meta": data["metaData"]["mosaicProviderJobCardsModel"]["tierSummaries"],
   }
-
-# def parse_search_page(result):
-#     """Find hidden web data of search results in Indeed.com search page HTML"""
-#     data = re.findall(r'window.mosaic.providerData\["mosaic-provider-jobcards"\]=(\{.+?\});', result.content)
-
-#     if not data:
-#         print("No data found.")
-#         return {}  # or any appropriate default value
-
-#     data = json.loads(data[0])
-#     print(data)  # Add this line to print the data_first_page dictionary
-#     return {
-#         "results": data["metaData"]["mosaicProviderJobCardsModel"]["results"],
-#         "meta": data["metaData"]["mosaicProviderJobCardsModel"]["tierSummaries"],
-#     }
-
 
 
 def _add_url_parameter(url, **kwargs):
@@ -66,7 +48,7 @@ async def scrape_search(url: str, max_results: int = 1000) -> List[Dict]:
   if total_results > max_results:
     total_results = max_results
 
-  # print(f"scraping remaining {(total_results - 10) / 10} pages")
+ 
   other_pages = [
     ScrapeConfig(_add_url_parameter(url, start=offset), **BASE_CONFIG)
     for offset in range(10, total_results + 10, 10)

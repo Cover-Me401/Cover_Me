@@ -3,10 +3,7 @@
 # $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
 # poetry run python Docker/modules/indeed_scraper/run.py
 
-
-
-
-import asyncio
+# import asyncio-NEEDED FOR TESTING
 import json
 from pathlib import Path
 from indeed import BASE_CONFIG
@@ -16,6 +13,7 @@ import indeed
 output = Path(__file__).parent / "results"
 output.mkdir(parents=True, exist_ok=True)
 
+# UNCOMMENT THESE FOR TESTING THIS FILE
 # job_specification = input('Enter job role: ')
 # job_specification = job_specification.replace(" ", "+")
 # location = input('Enter a location: ')
@@ -38,6 +36,6 @@ async def run(job_specification, location):
   result_jobs = await indeed.scrape_jobs(job_keys)
   output.joinpath("jobs.json").write_text(json.dumps(result_jobs, indent=2, ensure_ascii=False))
 
-
+# UNCOMMENT THESE FOR TESTING THIS FILE
 # if __name__ == "__main__":
 #   asyncio.run(run(job_specification, location))
