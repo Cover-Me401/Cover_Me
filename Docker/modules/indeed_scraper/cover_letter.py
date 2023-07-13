@@ -13,7 +13,8 @@ import sys
 
 sys.path.append("Docker/modules/indeed_scraper/indeed.py")  # Add the path to the indeed_scraper module
 
-openai.api_key = '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'
+# HARDCODE IN FOR NOW
+openai.api_key = 'OPENAI_API_KEY'
 console = Console()
 prompt = Prompt()
 
