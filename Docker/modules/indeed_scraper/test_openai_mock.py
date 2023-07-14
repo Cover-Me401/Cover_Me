@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-from Docker.modules.indeed_scraper.cover_letter_generator import generate_cover_letter
+from .cover_letter_generator import generate_cover_letter
 import openai
 
 class MockChoice:

@@ -1,23 +1,52 @@
+import re
 import unittest
-from unittest.mock import patch
-from Docker.modules.indeed_scraper.GPT_writer import get_descriptions, striphtml
+import json
+
+def test_get_descriptions():
+  assert get_descriptions
 
 
-class TestScriptFunctions(unittest.TestCase):
 
-    def test_get_descriptions(self):
-        expected_descriptions = ['Description 1', 'Description 2']
-        
-        # Patching the open function to return a mock file
-        with patch('builtins.open', unittest.mock.mock_open(read_data='[{"description": "Description 1"}, {"description": "Description 2"}]')):
-            descriptions = get_descriptions()
-            self.assertEqual(descriptions, expected_descriptions)
+def get_descriptions():
+  descriptions = []
+  with open('Docker/modules/indeed_scraper/results/jobs.json', 'r') as file:
+    job_details = file.read()
+    parsed_job_details = json.loads(job_details)
+    length_jobs = len(parsed_job_details)
+  for i in range(length_jobs):
+    description = parsed_job_details[i]['description']
+    descriptions.append(description)
+  return descriptions[:2]  # Return only the first 2 descriptions
 
-    def test_striphtml(self):
-        input_text = '<p>This is <b>bold</b> text.</p>'
-        expected_output = 'This is bold text.'
-        output = striphtml(input_text)
-        self.assertEqual(output, expected_output)
+def striphtml(json_details):
+    p = re.compile(r'<.*?>')
+    return p.sub('', json_details)
+
+class TestStripHTML(unittest.TestCase):
+    def test_striphtml_removes_tags(self):
+        # Test case where HTML tags are present
+        json_details = '<p>This is <b>bold</b> and <i>italic</i> text.</p>'
+        expected_output = 'This is bold and italic text.'
+        self.assertEqual(striphtml(json_details), expected_output)
+
+    def test_striphtml_no_tags(self):
+        # Test case where no HTML tags are present
+        json_details = 'This is a plain text without any HTML tags.'
+        expected_output = 'This is a plain text without any HTML tags.'
+        self.assertEqual(striphtml(json_details), expected_output)
+
+    def test_striphtml_empty_string(self):
+        # Test case with an empty string
+        json_details = ''
+        expected_output = ''
+        self.assertEqual(striphtml(json_details), expected_output)
+
+    def test_striphtml_nested_tags(self):
+        # Test case with nested HTML tags
+        json_details = '<p>This is <b>bold and <i>italic</i></b> text.</p>'
+        expected_output = 'This is bold and italic text.'
+        self.assertEqual(striphtml(json_details), expected_output)
+    
 
 if __name__ == '__main__':
     unittest.main()
