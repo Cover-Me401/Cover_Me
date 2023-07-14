@@ -1,3 +1,5 @@
+# This is the main page that puts everything together. It takes in the user input and returns gover letters.
+
 import asyncio
 from rich.prompt import Prompt
 from pathlib import Path

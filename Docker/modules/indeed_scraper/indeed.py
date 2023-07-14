@@ -1,16 +1,21 @@
+# This file scrapes the job search site. It locates the data for up to 30 job listings based on user input and scrapes the site for job listing previews, parses jobs, from the listing page, then scrapes the individual job's page.
+
 # https://github.com/scrapfly/scrapfly-scrapers/tree/main/indeed-scraper
 # To run this scraper set env variable $SCRAPFLY_KEY with your scrapfly API key:
 # $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"
-import json
-import math
-import os
-import re
+import json, math, os, re
+
 from typing import Dict, List
 import urllib
 from loguru import logger as log
 from scrapfly import ScrapeApiResponse, ScrapeConfig, ScrapflyClient, ScrapflyScrapeError
 
-SCRAPFLY = ScrapflyClient(key=os.environ["SCRAPFLY_KEY"])
+from pathlib import Path
+
+from dotenv import load_dotenv
+dotenv_path = Path('../../.env')
+load_dotenv(dotenv_path)
+SCRAPFLY = ScrapflyClient(os.getenv('SCRAPFLY_KEY'))
 BASE_CONFIG = {
   # Indeed.com requires Anti Scraping Protection bypass feature.
   "asp": True,

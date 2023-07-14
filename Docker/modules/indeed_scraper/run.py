@@ -1,3 +1,5 @@
+# This file specifies that the scraper should identify and retrieve job information based on each job's ID key. 
+
 # https://github.com/scrapfly/scrapfly-scrapers/tree/main/indeed-scraper
 # To run this script set the env variable $SCRAPFLY_KEY with your scrapfly API key:
 # $ export $SCRAPFLY_KEY="your key from https://scrapfly.io/dashboard"

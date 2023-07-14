@@ -1,3 +1,5 @@
+# This file scrapes a job search site for listings based on the user's selected keyword(s) and location. It takes the text it receives back and strips away any html in the text. Then it waits via async before looping through each job description, inputting the job plus user data to an openai prompt, and returning a cover letter for each job with the input information.
+
 import os
 from dotenv import load_dotenv
 import openai

@@ -1,3 +1,5 @@
+# This file holds the function that generates a cover letter. The function takes in the resume text and job description text, then prompts openai to create a cover letter given those two pieces of information.
+
 import openai
 from dotenv import load_dotenv
 import os
