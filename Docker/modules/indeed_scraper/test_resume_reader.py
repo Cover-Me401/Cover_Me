@@ -1,87 +1,24 @@
-# import pytest
-# from resume_reader import open_resume
-# import fitz
-# import os
-# import io
+import fitz
+import pytest
+import tempfile
+import os
 
-# # Testing for open_resume
-# # @pytest.mark.skip
-# def test_open_resume():
-#   assert open_resume() == None
+# assuming the open_resume function is in a file named my_module.py
+from .resume_reader import open_resume
 
-# # @pytest.mark.skip
-# def test_open_resume():
-#     expected_filename = "test_resume.pdf"
-#     expected_mode = "rb"
+def test_open_resume():
+    # create a temporary pdf file
+    with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tf:
+        doc = fitz.open(tf.name)  # Open the temporary file
+        page = doc.new_page()
+        page.insert_text([0, 0], "Hello World")
+        doc.save(tf.name)
+        temp_filename = tf.name
 
-#     # Create a temporary resume file for testing
-#     with open(expected_filename, "w") as file:
-#         file.write("Sample Resume Text")
+    try:
+        # ensure our function reads the text correctly
+        assert open_resume(temp_filename) == "Hello World"
+    finally:
+        # cleanup: remove the temporary file
+        os.remove(temp_filename)
 
-#     # Call the open_resume() function
-#     file_object = open_resume(expected_filename, expected_mode)
-
-#     # Verify the file object and mode
-#     assert isinstance(file_object, io.IOBase)
-#     assert file_object.mode == expected_mode
-
-#     # Clean up the temporary resume file
-#     os.remove(expected_filename)
-
-# # @pytest.mark.skip
-# def test_open_resume_missing_file():
-#     filename = "missing_file.pdf"
-#     assert open_resume(filename) == None
-
-# @pytest.mark.skip
-# def test_open_resume_invalid_mode():
-#     with pytest.raises(ValueError):
-#         open_resume("test_resume.pdf", "r")
-
-# @pytest.mark.skip
-# def test_open_resume_not_pdf():
-#     with pytest.raises(TypeError):
-#         open_resume("test_resume.txt", "rb")
-
-# @pytest.mark.skip
-# def test_open_resume_no_text():
-#     filename = "empty_resume.pdf"
-#     with open(filename, "w") as file:
-#         file.write("")
-#     text = open_resume(filename)
-#     assert text == ""
-
-
-# # Run the tests
-# if __name__ == "__main__":
-#     pytest.main([__file__])
-
-
-
-import unittest
-from resume_reader import open_resume
-
-class OpenResumeTests(unittest.TestCase):
-    def test_open_resume_with_valid_pdf(self):
-        # Test opening a valid PDF file
-        filename = "valid_resume.pdf"
-        result = open_resume(filename)
-        self.assertIsInstance(result, str)
-        self.assertNotEqual(result, "")
-    
-    def test_open_resume_with_invalid_pdf(self):
-        # Test opening an invalid PDF file
-        filename = "invalid_resume.pdf"
-        result = open_resume(filename)
-        self.assertIsInstance(result, str)
-        self.assertEqual(result, "")
-
-    def test_open_resume_with_nonexistent_file(self):
-        # Test opening a nonexistent file
-        filename = "nonexistent_resume.pdf"
-        result = open_resume(filename)
-        self.assertIsInstance(result, str)
-        self.assertEqual(result, "")
-
-if __name__ == '__main__':
-    unittest.main()

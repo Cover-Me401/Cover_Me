@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from indeed_scraper.GPT_writer import get_descriptions, striphtml
+from Docker.modules.indeed_scraper.GPT_writer import get_descriptions, striphtml
 
 
 class TestScriptFunctions(unittest.TestCase):

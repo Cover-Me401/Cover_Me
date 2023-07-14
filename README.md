@@ -6,11 +6,11 @@ Sarah Glass, Anthony Sinitsa, Dan Quinn, Logan Reese for seattle_c_py_401d22
 
 ## Description
 
-We will create a CLI app that will build a web scraper from job search site indeed.com. We will collect data for job listings in the tech industry such as company name, skills, education level, salary detail, etc. and then allow users to search for jobs by keyword and location. User will be able to save jobs they are interested in to a file and run the job's data through AI to produce a sample cover letter for that job.
+This CLI app contains a web scraper from job search site indeed.com. The app collects data for job listings in the tech industry such as company name, skills, education level, salary detail, etc. and then allows users to search for jobs by keyword and location. The code runs a selected job's data along with the user's resume (uploaded via filepath) through AI to produce a sample cover letter tailored to the user, specifically for that job.
 
 This program helps users find relevant and recent job listings in the tech industry, select listings they like, and prompt AI to process the listing's data to produce a sample cover letter for the given job posting.
 
-## CLI wireframe
+## CLI wireframe - Our Initial Wireframe Walkthrough
 
 __1. User launches the CLI app__
 
@@ -181,11 +181,7 @@ source .venv/bin/activate
 
 ## How to initialize/run application
 
-- python3 -m Docker.modules.[file name without .py]
-
-For example:
-
-- python3 -m Docker.modules.program_start
+- `python Docker/modules/indeed_scraper/main.py``
 
 ## Libraries & Tools
 
@@ -327,9 +323,5 @@ zipp==3.16.1
 
 ## Tests
 
-- Coverage: 80% coverage with [pytest-cov](https://pypi.org/project/pytest-cov/)
-
-for example:
-
-- pytest tests/test_test.py
-- Testing using pytest's `monkeypatch` and `capsys` features
+- Coverage: 80% coverage with `pytest-cov'
+- Testing using `pytest` and `unittest.mock`
