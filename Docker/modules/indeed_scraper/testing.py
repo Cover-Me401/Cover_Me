@@ -1,5 +1,4 @@
 import pytest
-import sys, os
 import unittest
 from unittest.mock import MagicMock
 from .cover_letter_generator import generate_cover_letter
